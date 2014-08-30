@@ -14,7 +14,8 @@
     // Defaults
     var settings = $.extend({
         'time': 400,
-        'delay': 10
+        'delay': 10,
+        'callback': null
     }, options);
 
     return this.each(function(){
@@ -66,6 +67,10 @@
                     delete $this.data('counterup-nums');
                     $this.data('counterup-nums', null);
                     $this.data('counterup-func', null);
+
+                    if (typeof($settings.callback) === 'function') {
+                        $settings.callback();
+                    }
                 }
             };
             $this.data('counterup-func', f);
